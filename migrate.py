@@ -11,7 +11,11 @@ import os
 
 from sqlalchemy import text
 
-from db import engine
+from sentry_setup import init_sentry
+
+init_sentry()   # a failed release-phase migration reaches Sentry (oxjob #1685)
+
+from db import engine  # noqa: E402
 
 MIGRATIONS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "migrations")
 
